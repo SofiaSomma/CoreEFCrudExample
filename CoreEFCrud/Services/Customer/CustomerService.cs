@@ -82,10 +82,19 @@ namespace CoreEFCrud.Services.CustomerServices
             return serviceResponse;
         }
 
-        public Task<ServiceResponse<GetCustomerDto>> UpdateCustomer(UpdateCustomerDto customer)
+        public async Task<ServiceResponse<GetCustomerDto>> UpdateCustomer(UpdateCustomerDto customer)
         {
-            //var customerDb = _context.Customers.FirstOrDefault(x => x.Id == customer.Id);
-            return null;
+            var customerDb = _context.Customers.FirstOrDefault(x => x.CustomerId == customer.Id);
+            //copy customer in another. quick solution, detach the entity 'cause ef it is after the mapping 
+            //is not going to be able to track the original instance anymore. Alternatively working on the 
+            //original instance
+            _context.Entry(customerDb).State = EntityState.Detached; 
+            customerDb = _mapper.Map<Customer>(customer);
+            _context.Entry(customerDb).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            ServiceResponse<GetCustomerDto> serviceResponse = new ServiceResponse<GetCustomerDto>();
+            serviceResponse.Data = _mapper.Map<GetCustomerDto>(customerDb);
+            return serviceResponse;
         }
     }
 }

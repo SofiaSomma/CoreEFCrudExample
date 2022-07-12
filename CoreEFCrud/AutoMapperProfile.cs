@@ -12,9 +12,11 @@ namespace CoreEFCrud
     {
         public AutoMapperProfile()
         {
-            CreateMap<Customer, GetCustomerDto>();
+            CreateMap<Customer, GetCustomerDto>().ReverseMap();
             CreateMap<AddCustomerDto, Customer>();
-            CreateMap<Customer, UpdateCustomerDto>().ReverseMap();
+            CreateMap<Customer, UpdateCustomerDto>();
+            CreateMap<UpdateCustomerDto, Customer>()
+                .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Id)); 
         }
     }
 }
