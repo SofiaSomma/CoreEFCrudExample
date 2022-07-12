@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CoreEFCrud</name>
+    </assembly>
+    <members>
+        <member name="T:CoreEFCrud.ActionFilters.ValidationFilterAttribute">
+            <!-- <summary>
+             with this action filter we can execute code before and after the action.
+             Like the other types of filters, the action filter can be added to different scope levels: 
+             Global, Action, Controller.
+             If we want to use our filter globally, we need to register it inside the AddControllers()
+             method in the ConfigureServices method
+             services.AddControllers(config => 
+             {
+               config.Filters.Add(new GlobalFilterExample());
+             });
+             Action or Controller level, we need to register it in the same ConfigureServices method but 
+             as a service in the IoC container:
+             services.AddScoped<ActionFilterExample>();
+             services.AddScoped<ControllerFilterExample>();
+             [ServiceFilter(typeof(ControllerFilterExample))]
+             [Route("api/[controller]")]
+              [ApiController]
+              public class TestController : ControllerBase
+             {
+                [HttpGet]
+                [ServiceFilter(typeof(ActionFilterExample))]
+                public IEnumerable<string> Get()
+                {
+                    return new string[] { "example", "data" };
+                }
+             }
+             <param name="customer"></param>
+             <returns></returns>
+             </summary> -->
+        </member>
+        <member name="M:CoreEFCrud.Controller.CustomerController.Get">
+            <summary>
+            Get the whole list of customer items
+            </summary>
+            <param></param>
+            <returns></returns>
+            
+        </member>
+        <member name="M:CoreEFCrud.Controller.CustomerController.Get(System.Int32)">
+            <summary>
+            Get a single customer item
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+            
+        </member>
+        <member name="M:CoreEFCrud.Controller.CustomerController.Post(CoreEFCrud.DTOs.CustomerDto.AddCustomerDto)">
+            <summary>
+            add a new customer 
+            </summary>
+            <returns>new customer id</returns>
+            <remarks>
+            Sample request:
+            
+                POST api/customer
+                {        
+                  "name": "Mike",
+                  "surname": "Donegal"
+                }
+            </remarks>
+            <param name="customer"></param>
+        </member>
+        <member name="M:CoreEFCrud.Controller.CustomerController.Put(CoreEFCrud.DTOs.CustomerDto.UpdateCustomerDto)">
+            <summary>
+            Customer Update
+            </summary>
+            <param name="customer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreEFCrud.Controller.CustomerController.Patch(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{CoreEFCrud.DTOs.CustomerDto.UpdateCustomerDto})">
+            <summary>
+            Patch = partial update based on JsonPatchDocument
+            </summary>
+            <param name="id"></param>
+            <param name="customer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreEFCrud.Controller.CustomerController.CustomPartialUpdateForCustomer(CoreEFCrud.DTOs.CustomerDto.UpdateCustomerDto)">
+            <summary>
+            Patch = partial update based on sended fields
+            </summary>
+            <param name="customer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreEFCrud.Services.CustomerServices.CustomerService.CustomPartialUpdateForCustomer(CoreEFCrud.DTOs.CustomerDto.UpdateCustomerDto)">
+            <summary>
+            
+            </summary>
+            <param name="customer"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
