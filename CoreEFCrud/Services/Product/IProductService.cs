@@ -7,6 +7,6 @@ namespace CoreEFCrud.Services.Product
 {
     public interface IProductService
     {
-        public Task<ServiceResponse<List<GetProductDto>>> GetProducts();
+        Task<ServiceResponse<List<GetProductDto>>> GetProducts();
     }
 }
